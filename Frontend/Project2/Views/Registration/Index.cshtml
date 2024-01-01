@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Project2.Models.registration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Registrations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.stud_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pre_requisite)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.stud_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.course_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.c_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_requisite)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { course_id = item.course_id, stud_id = item.stud_id }) |
+                @Html.ActionLink("Details", "Details", new { course_id = item.course_id, stud_id = item.stud_id }) |
+                @Html.ActionLink("Delete", "Delete", new { course_id = item.course_id, stud_id = item.stud_id })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,99 @@
+﻿@model Project2.Models.student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.depart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.depart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.student_batch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student_batch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.current_sem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.current_sem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cgpa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cgpa)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

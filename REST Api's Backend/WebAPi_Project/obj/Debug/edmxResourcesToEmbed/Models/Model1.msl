@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Course_RegistrationEntities">
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="Model.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="credithours" ColumnName="credithours" />
+          <ScalarProperty Name="pre_requisite" ColumnName="pre_requisite" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGISTRATIONs">
+      <EntityTypeMapping TypeName="Model.REGISTRATION">
+        <MappingFragment StoreEntitySet="REGISTRATION">
+          <ScalarProperty Name="stud_id" ColumnName="stud_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="c_status" ColumnName="c_status" />
+          <ScalarProperty Name="pre_requisite" ColumnName="pre_requisite" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="Model.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fname" ColumnName="fname" />
+          <ScalarProperty Name="depart" ColumnName="depart" />
+          <ScalarProperty Name="student_batch" ColumnName="student_batch" />
+          <ScalarProperty Name="current_sem" ColumnName="current_sem" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contact_number" ColumnName="contact_number" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="cgpa" ColumnName="cgpa" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

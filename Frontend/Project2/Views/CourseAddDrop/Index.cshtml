@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Project2.Models.course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Courses</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.credithours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pre_requisite)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.credithours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_requisite)
+            </td>
+            <td>
+                @Html.ActionLink("Add", "Add", new { course_id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index","St_Course")
+</div>

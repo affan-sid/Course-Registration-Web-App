@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebAPi_Project.Models.REGISTRATION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pre_requisite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.fname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pre_requisite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.fname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

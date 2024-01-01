@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="credithours" Type="int" />
+    <Property Name="pre_requisite" Type="varchar" MaxLength="40" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="REGISTRATION">
+    <Key>
+      <PropertyRef Name="stud_id" />
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="stud_id" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="section" Type="varchar" MaxLength="10" />
+    <Property Name="c_status" Type="varchar" MaxLength="10" />
+    <Property Name="pre_requisite" Type="varchar" MaxLength="15" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="fname" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="depart" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="student_batch" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="current_sem" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="contact_number" Type="char" MaxLength="15" Nullable="false" />
+    <Property Name="section" Type="varchar" MaxLength="10" />
+    <Property Name="cgpa" Type="varchar" MaxLength="1" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <Association Name="reg_stud_fk">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="REGISTRATION" Type="Self.REGISTRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="REGISTRATION">
+        <PropertyRef Name="stud_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="reg_stud_fk2">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="REGISTRATION" Type="Self.REGISTRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="REGISTRATION">
+        <PropertyRef Name="stud_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REGISTRATION" EntityType="Self.REGISTRATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="reg_stud_fk" Association="Self.reg_stud_fk">
+      <End Role="student" EntitySet="student" />
+      <End Role="REGISTRATION" EntitySet="REGISTRATION" />
+    </AssociationSet>
+    <AssociationSet Name="reg_stud_fk2" Association="Self.reg_stud_fk2">
+      <End Role="student" EntitySet="student" />
+      <End Role="REGISTRATION" EntitySet="REGISTRATION" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="credithours" Type="Int32" Nullable="false" />
+    <Property Name="pre_requisite" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="REGISTRATIONs" Relationship="Self.reg_stud_fk2" FromRole="course" ToRole="REGISTRATION" />
+  </EntityType>
+  <EntityType Name="REGISTRATION">
+    <Key>
+      <PropertyRef Name="stud_id" />
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="stud_id" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="course_id" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="section" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="c_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="pre_requisite" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="course" Relationship="Self.reg_stud_fk2" FromRole="REGISTRATION" ToRole="course" />
+    <NavigationProperty Name="student" Relationship="Self.reg_stud_fk" FromRole="REGISTRATION" ToRole="student" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="depart" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="student_batch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="current_sem" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact_number" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="section" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cgpa" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="REGISTRATIONs" Relationship="Self.reg_stud_fk" FromRole="student" ToRole="REGISTRATION" />
+  </EntityType>
+  <Association Name="reg_stud_fk2">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="REGISTRATION" Type="Self.REGISTRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="REGISTRATION">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="reg_stud_fk">
+    <End Role="student" Type="Self.student" Multiplicity="1" />
+    <End Role="REGISTRATION" Type="Self.REGISTRATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="REGISTRATION">
+        <PropertyRef Name="stud_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Course_RegistrationEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="REGISTRATIONs" EntityType="Self.REGISTRATION" />
+    <EntitySet Name="students" EntityType="Self.student" />
+    <AssociationSet Name="reg_stud_fk2" Association="Self.reg_stud_fk2">
+      <End Role="course" EntitySet="courses" />
+      <End Role="REGISTRATION" EntitySet="REGISTRATIONs" />
+    </AssociationSet>
+    <AssociationSet Name="reg_stud_fk" Association="Self.reg_stud_fk">
+      <End Role="student" EntitySet="students" />
+      <End Role="REGISTRATION" EntitySet="REGISTRATIONs" />
+    </AssociationSet>
+    <EntitySet Name="admins" EntityType="Model.admin" />
+  </EntityContainer>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
